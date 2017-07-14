@@ -13,3 +13,11 @@ My first script demonstrates singleshot reads.
 
 Everything here was based on available code from NXC, LeJOS and RobotC for NXT/EV3. Thanks for your work, guys!
 Thanks also to David Lechner that corrected my first cable. Despite lots of pictures, pin2 **IS NOT** Ground.
+
+To use the Codatex RFID Sensor:
+- connect the cable adapter to one of the EV3 input ports
+- configure the port for 'other-i2c' mode
+
+NOTE: My scripts assume Input Port 1 is used.
+
+I2C operations work fine with a normal cable so it's always possible to read Vendor, Serial Number, etc. All tag readings will return 0 and the sensor LED will never blick.
