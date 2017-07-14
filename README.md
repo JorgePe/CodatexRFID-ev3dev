@@ -21,3 +21,9 @@ To use the Codatex RFID Sensor:
 NOTE: My scripts assume Input Port 1 is used.
 
 I2C operations work fine with a normal cable so it's always possible to read Vendor, Serial Number, etc. All tag readings will return 0 and the sensor LED will never blick.
+
+A few more details at my blog:
+http://ofalcao.pt/blog/2017/codatex-rfid-sensor
+
+A video with ev3dev reading several tags (4001 and 4120):
+https://youtu.be/ONw08QqMvhc
