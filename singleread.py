@@ -7,6 +7,7 @@ __author__ = 'Jorge Pereira'
 #
 # based on previous drivers for NXT and EV3:
 # NXC
+# http://www.codatex.com/picture/upload/en/RFID_NXC_lib.zip
 #
 # LeJOS
 # https://github.com/SnakeSVx/ev3/blob/master/Lejos/src/main/java/lejos/hardware/sensor/RFIDSensor.java
