@@ -5,20 +5,14 @@ __author__ = 'Jorge Pereira'
 
 from codatex import *
 from smbus import SMBus
-from time import sleep
-from codecs import encode
 
 # We assume Codatex sensor at Input Port 1
 # and the port previously initialized to "other-i2c" mode
 IN1_I2CBUS = 3
-
 bus = SMBus(IN1_I2CBUS)
 
 #wakeup and init firmware
-bus.write_quick(CODATEX_ADDRESS)
-sleep(DELAY_WAKEUP)
-bus.write_byte_data(CODATEX_ADDRESS,CODATEX_COMMAND,CMD_INITFW)
-sleep(DELAY_FIRMWARE)
+codatex_initfw(bus)
 
 # This is just empiric
 DELAY_LOOP = 0.025
@@ -26,15 +20,14 @@ DELAY_LOOP = 0.025
 while True:
 
     #wakeup
-    bus.write_quick(CODATEX_ADDRESS)
-    sleep(DELAY_WAKEUP)
+    codatex_wakeup(bus)
 
-    #read single shot mode
-    bus.write_byte_data(CODATEX_ADDRESS,CODATEX_COMMAND,CMD_SINGLE)
+    #singleshot mode read
+    codatex_singleshot(bus)
     sleep(DELAY_ACQUIRE)
 
     #read tag ID
-    tagid = bus.read_i2c_block_data(CODATEX_ADDRESS,CODATEX_TAGID,LEN_TAGID)
+    tagid = codatex_tagid(bus)
     if tagid == [0,0,0,0,0]:
         print("No Tag found")
     else:
