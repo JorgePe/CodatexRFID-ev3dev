@@ -88,3 +88,6 @@ def codatex_continuous(bus):
 
 def codatex_tagid(bus):
     return bus.read_i2c_block_data(CODATEX_ADDRESS,CODATEX_TAGID,LEN_TAGID)
+
+def codatex_status(bus):
+    return bus.read_byte_data(CODATEX_ADDRESS,CODATEX_STATUS)
