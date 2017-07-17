@@ -25,7 +25,7 @@ Thanks also to David Lechner that corrected my first cable. Despite lots of pict
 
 To use the Codatex RFID Sensor:
 - connect the cable adapter to one of the EV3 input ports
-- configure the port for 'other-i2c' mode
+- configure the port for 'other-i2c' mode (see 'init-port.sh')
 
 NOTE: My scripts assume Input Port 1 is used.
 
