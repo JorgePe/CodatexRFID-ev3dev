@@ -35,6 +35,7 @@ CODATEX_SERIAL  = 0xA0    # Read - Serial Number
 
 # Codatex Commands
 CMD_SINGLE = 0x01  # Single shot read
+CMD_CONTIN = 0x02  # Continuous read
 CMD_INITFW = 0x83  # Initialize firmware (normal operation)
 CMD_BTLDR  = 0x81  # Start bootlader
 
