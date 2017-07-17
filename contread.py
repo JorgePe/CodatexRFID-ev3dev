@@ -4,48 +4,44 @@ __author__ = 'Jorge Pereira'
 
 from codatex import *
 from smbus import SMBus
-from time import sleep
-from codecs import encode
+
+# Just to compare with LeJOS long format of TagID
+def taglongid(tagid):
+    tagid_long = tagid[0] \
+                 + tagid[1]*256 \
+                 + tagid[2]*65536 \
+                 + tagid[3]*16777216 \
+                 + tagid[4]*4294967296
+    return tagid_long
 
 # We assume Codatex sensor at Input Port 1
 # and the port previously initialized to "other-i2c" mode
 IN1_I2CBUS = 3
-
 bus = SMBus(IN1_I2CBUS)
 
 #wakeup and init firmware
-bus.write_quick(CODATEX_ADDRESS)
-sleep(DELAY_WAKEUP)
-bus.write_byte_data(CODATEX_ADDRESS,CODATEX_COMMAND,CMD_INITFW)
-sleep(DELAY_FIRMWARE)
+codatex_initfw(bus)
 
 #read continuous mode
-bus.write_byte_data(CODATEX_ADDRESS,CODATEX_COMMAND,CMD_CONTIN)
+codatex_continuous(bus)
 sleep(DELAY_ACQUIRE)
 
 while True:
 
     #wakeup
-    bus.write_quick(CODATEX_ADDRESS)
-    sleep(DELAY_WAKEUP)
+    codatex_wakeup(bus)
 
-    if bus.read_byte_data(CODATEX_ADDRESS,CODATEX_STATUS) == 0 :
-       bus.write_byte_data(CODATEX_ADDRESS,CODATEX_COMMAND,CMD_CONTIN)
-       sleep(DELAY_ACQUIRE)
-
+    if codatex_status(bus) == 0 :
+        codatex_continuous(bus)
+        sleep(DELAY_ACQUIRE)
 
     #read tag ID
-    tagid = bus.read_i2c_block_data(CODATEX_ADDRESS,CODATEX_TAGID,LEN_TAGID)
+    tagid = codatex_tagid(bus)
 
     if tagid == [0,0,0,0,0]:
         print("No Tag found")
     else:
-       # Just to compare with LeJOS long format of TagID
-       tagid_LeJOS = tagid[0] \
-                     + tagid[1]*256 \
-                     + tagid[2]*65536 \
-                     + tagid[3]*16777216 \
-                     + tagid[4]*4294967296
-       print("Tag ID:", tagid, "(LeJOS:", tagid_LeJOS, ")")
+        print("Tag ID:", tagid, "(LeJOS:", taglongid(tagid), ")")
 
     sleep(DELAY_READ)
+
