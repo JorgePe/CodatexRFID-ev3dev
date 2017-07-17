@@ -12,6 +12,15 @@ The Codatex RFID sensor has 2 reading modes:
 There is a script to demonstrate each of these modes and another to just get information about the sensor (like version and serial number).
 
 Everything was based on available code from NXC, LeJOS and RobotC for NXT/EV3. Thanks for your work, guys!
+
+- NXC:
+ http://www.codatex.com/picture/upload/en/RFID_NXC_lib.zip
+- LeJOS:
+ https://github.com/SnakeSVx/ev3/blob/master/Lejos/src/main/java/lejos/hardware/sensor/RFIDSensor.java
+- RobotC:
+ http://botbench.com/driversuite/codatech-rfid_8h_source.html
+
+
 Thanks also to David Lechner that corrected my first cable. Despite lots of pictures, pin2 **IS NOT** Ground.
 
 To use the Codatex RFID Sensor:
