@@ -29,7 +29,7 @@ To use the Codatex RFID Sensor:
 
 NOTE: My scripts assume Input Port 1 is used.
 
-I2C operations work fine with a normal cable so it's always possible to read Vendor, Serial Number, etc. All tag readings will return 0 and the sensor LED will never blick.
+I2C operations work fine with a normal cable so it's always possible to read Vendor, Serial Number, etc. All tag readings will return 0 and the sensor LED will never blinck.
 
 A few more details at my blog:
 http://ofalcao.pt/blog/2017/codatex-rfid-sensor
