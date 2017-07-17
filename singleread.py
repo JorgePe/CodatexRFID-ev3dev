@@ -29,6 +29,7 @@ CODATEX_ADDRESS = 0x02    # I2C Address of the Codatex sensor
 CODATEX_VERSION = 0x00    # Read - Version = "V1.0"
 CODATEX_VENDOR  = 0x08    # Read - Vendor = "CODATEX"
 CODATEX_TYPE    = 0x10    # Read - Type = "RFID"
+CODATEX_STATUS  = 0x32    # Read - Tag Acquired = 0/1
 CODATEX_COMMAND = 0x41    # Write - Command
 CODATEX_TAGID   = 0x42    # Read - TagID
 CODATEX_SERIAL  = 0xA0    # Read - Serial Number
