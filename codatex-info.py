@@ -1,3 +1,24 @@
+#!/usr/bin/env python3
+
+__author__ = 'Jorge Pereira'
+
+# Codatex Sensor webpage:
+# http://www.codatex.com/lego-sensor.html
+#
+# based on previous drivers for NXT and EV3:
+# NXC
+# http://www.codatex.com/picture/upload/en/RFID_NXC_lib.zip
+# 
+# LeJOS
+# https://github.com/SnakeSVx/ev3/blob/master/Lejos/src/main/java/lejos/hardware/sensor/RFIDSensor.java
+#
+# RobotC
+# http://botbench.com/driversuite/codatech-rfid_8h_source.html
+
+from smbus import SMBus
+from time import sleep
+from codecs import encode
+
 # Assume Codatex sensor at Input Port 1
 # and the port previously initialized to "other-i2c" mode
 IN1_I2CBUS = 3
