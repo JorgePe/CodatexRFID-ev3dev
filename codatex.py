@@ -10,11 +10,13 @@ __author__ = 'Jorge Pereira'
 # http://www.codatex.com/picture/upload/en/RFID_NXC_lib.zip
 # 
 # LeJOS
-# https://github.com/SnakeSVx/ev3/blob/master/Lejos/src/main/java/lejos/hardware/sensor/RFIDSensor.java
+# https://github.com/SnakeSVx/ev3/blob/master/Lejos/src/main/java/lejos/hardware/sensor/RFID$
 #
 # RobotC
 # http://botbench.com/driversuite/codatech-rfid_8h_source.html
 
+from time import sleep
+from codecs import encode
 
 CODATEX_ADDRESS = 0x02    # I2C Address of the Codatex sensor
 
@@ -45,3 +47,35 @@ DELAY_WAKEUP = 0.005
 DELAY_FIRMWARE = 0.100
 DELAY_ACQUIRE = 0.250
 DELAY_READ = 0.200
+
+def codatex_wakeup(bus):
+    bus.write_quick(CODATEX_ADDRESS)
+    sleep(DELAY_WAKEUP)
+
+def codatex_initfw(bus):
+    codatex_wakeup(bus)
+    bus.write_byte_data(CODATEX_ADDRESS,CODATEX_COMMAND,CMD_INITFW)
+    sleep(DELAY_FIRMWARE)
+
+def codatex_initsn(bus):
+    bus.write_byte_data(CODATEX_ADDRESS,CODATEX_COMMAND,CMD_BTLDR)
+    sleep(DELAY_FIRMWARE)
+
+def codatex_type(bus):
+    type = bus.read_i2c_block_data(CODATEX_ADDRESS,CODATEX_TYPE,LEN_TYPE)
+    return bytes(type).decode('utf-8')
+
+def codatex_vendor(bus):
+    vendor = bus.read_i2c_block_data(CODATEX_ADDRESS,CODATEX_VENDOR,LEN_VENDOR)
+    return bytes(vendor).decode('utf-8')
+
+def codatex_version(bus):
+    version = bus.read_i2c_block_data(CODATEX_ADDRESS,CODATEX_VERSION,LEN_VERS)
+    return bytes(version).decode('utf-8')
+
+def codatex_sn(bus):
+    codatex_wakeup(bus)
+    codatex_initsn(bus)
+    serial = bus.read_i2c_block_data(CODATEX_ADDRESS,CODATEX_SERIAL,LEN_SERIAL)
+    codatex_initfw(bus)
+    return (encode(bytes(serial),'hex')).decode("utf-8")
