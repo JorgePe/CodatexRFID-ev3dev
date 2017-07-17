@@ -6,6 +6,14 @@ __author__ = 'Jorge Pereira'
 from codatex import *
 from smbus import SMBus
 
+def taglongid(tagid):
+    tagid_long = tagid[0] \
+                 + tagid[1]*256 \
+                 + tagid[2]*65536 \
+                 + tagid[3]*16777216 \
+                 + tagid[4]*4294967296
+    return tagid_long
+
 # We assume Codatex sensor at Input Port 1
 # and the port previously initialized to "other-i2c" mode
 IN1_I2CBUS = 3
@@ -15,7 +23,7 @@ bus = SMBus(IN1_I2CBUS)
 codatex_initfw(bus)
 
 # This is just empiric
-DELAY_LOOP = 0.025
+loopdelay = 0.025
 
 while True:
 
@@ -32,11 +40,6 @@ while True:
         print("No Tag found")
     else:
        # Just to compare with LeJOS long format of TagID
-       tagid_LeJOS = tagid[0] \
-                     + tagid[1]*256 \
-                     + tagid[2]*65536 \
-                     + tagid[3]*16777216 \
-                     + tagid[4]*4294967296
-       print("Tag ID:", tagid, "(LeJOS:", tagid_LeJOS, ")")
+       print("Tag ID:", tagid, "(LeJOS:", taglongid(tagid), ")")
 
-    sleep(DELAY_LOOP)
+    sleep(loopdelay)
