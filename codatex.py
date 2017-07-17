@@ -79,3 +79,12 @@ def codatex_sn(bus):
     serial = bus.read_i2c_block_data(CODATEX_ADDRESS,CODATEX_SERIAL,LEN_SERIAL)
     codatex_initfw(bus)
     return (encode(bytes(serial),'hex')).decode("utf-8")
+
+def codatex_singleshot(bus):
+    bus.write_byte_data(CODATEX_ADDRESS,CODATEX_COMMAND,CMD_SINGLE)
+
+def codatex_continuous(bus):
+    bus.write_byte_data(CODATEX_ADDRESS,CODATEX_COMMAND,CMD_CONTIN)
+
+def codatex_tagid(bus):
+    return bus.read_i2c_block_data(CODATEX_ADDRESS,CODATEX_TAGID,LEN_TAGID)
