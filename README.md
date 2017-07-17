@@ -9,7 +9,7 @@ The Codatex RFID sensor has 2 reading modes:
 - singleshot
 - continuous
 
-There is a script to demonstrate each of these modes.
+There is a script to demonstrate each of these modes and another to just get information about the sensor (like version and serial number).
 
 Everything was based on available code from NXC, LeJOS and RobotC for NXT/EV3. Thanks for your work, guys!
 Thanks also to David Lechner that corrected my first cable. Despite lots of pictures, pin2 **IS NOT** Ground.
