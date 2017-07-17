@@ -6,6 +6,7 @@ __author__ = 'Jorge Pereira'
 from codatex import *
 from smbus import SMBus
 
+# Just to compare with LeJOS long format of TagID
 def taglongid(tagid):
     tagid_long = tagid[0] \
                  + tagid[1]*256 \
@@ -39,7 +40,6 @@ while True:
     if tagid == [0,0,0,0,0]:
         print("No Tag found")
     else:
-       # Just to compare with LeJOS long format of TagID
        print("Tag ID:", tagid, "(LeJOS:", taglongid(tagid), ")")
 
     sleep(loopdelay)
