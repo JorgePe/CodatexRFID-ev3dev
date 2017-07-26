@@ -3,7 +3,8 @@ Python scripts to use Codatex RFID Sensor with ev3dev
 
 Codatex RFID Sensor for NXT (http://www.codatex.com/lego-sensor.html) also works with the EV3 (at least with LeJOS and RobotC) but there is no driver yet for ev3dev.
 
-The Codatex RFID sensor is an I2C device but it also needs power on pin 1. That is a problem because current I2C modes implemented by ev3dev ("nxt-i2c" and "other-i2c") don't activate pin1. Since I don't know how to create a new driver, I made an adapter cable, with a PP3 9V battery conencted to pin1 (Analog Voltage) and pin3 (Ground) of the sensor (to prevent damage I cut the first wire so no voltage reaches the EV3).
+The Codatex RFID sensor is an I2C device but it also needs power on pin 1. <s>That is a problem because current I2C modes implemented by ev3dev ("nxt-i2c" and "other-i2c") don't activate pin1. Since I don't know how to create a new driver, I made an adapter cable, with a PP3 9V battery conencted to pin1 (Analog Voltage) and pin3 (Ground) of the sensor (to prevent damage I cut the first wire so no voltage reaches the EV3).</s>
+Since 25-July-2017 (kernel 4.4.78-21-ev3dev-ev3) the "other-i2c" mode activates power on pin 1 so a standard EV3 cable is enough now.
 
 The Codatex RFID sensor has 2 reading modes:
 - singleshot
@@ -22,9 +23,10 @@ Everything was based on available code from NXC, LeJOS and RobotC for NXT/EV3. T
 
 
 Thanks also to David Lechner that corrected my first cable. Despite lots of pictures, pin2 **IS NOT** Ground.
+And re-thanks to David for the new "other-i2c" feature.
 
 To use the Codatex RFID Sensor:
-- connect the cable adapter to one of the EV3 input ports
+<s>- connect the cable adapter to one of the EV3 input ports</s>
 - configure the port for 'other-i2c' mode (see 'init-port.sh')
 
 NOTE: My scripts assume Input Port 1 is used.
